@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.BackgroundColor = ConsoleColor.White;
+Console.BackgroundColor = ConsoleColor.Red;
 Console.WriteLine("Hello, World!");
 
 Console.BackgroundColor = ConsoleColor.Blue;
