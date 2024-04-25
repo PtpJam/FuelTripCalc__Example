@@ -1,3 +1,5 @@
+using FuelCalcLib.Models;
+
 namespace WinFormsApp1
 {
     public partial class MainForm : Form
@@ -18,7 +20,42 @@ namespace WinFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            resultLabel.Text = (new FuelCalcLib.TripController(new FuelCalcLib.TripModel() { FuelCost = (int)fuelCostUpDown.Value, Avarage = (int)avarageUpDown.Value, Distance = (int)distanceUpDown.Value })).Calculate().ToString();
+            resultLabel.Text = (
+                new FuelCalcLib.Controller.TripDBController(
+                    new FuelCalcLib.Models.TripModel()
+                    {
+                        FuelCost = (int)fuelCostUpDown.Value,
+                        Avarage = (int)avarageUpDown.Value,
+                        Distance = (int)distanceUpDown.Value
+                    },
+                    new FuelCalcLib.Models.CarModel()
+                    {
+                        carMark = carMarkTextBox.Text,
+                        carModel = modelTextBox.Text,
+                        carEngine = (int)engineUpDown.Value
+                    }
+                )).Calculate().ToString();
+        }
+
+
+
+        private void avarageUpDown_MouseClick(object sender, MouseEventArgs e)
+        {
+            int t = new FuelCalcLib.Controller.TripDBController(new FuelCalcLib.Models.CarModel()
+            {
+                carMark = carMarkTextBox.Text,
+                carModel = modelTextBox.Text,
+                carEngine = (int)engineUpDown.Value
+            }).GetAvarage();
+
+            avarageUpDown.Value = t;
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            carMarkTextBox.Text = modelTextBox.Text = string.Empty;
+            engineUpDown.Value = avarageUpDown.Value = distanceUpDown.Value = fuelCostUpDown.Value = 0;
         }
     }
 }

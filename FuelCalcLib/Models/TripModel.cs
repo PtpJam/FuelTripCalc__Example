@@ -1,4 +1,4 @@
-﻿namespace FuelCalcLib
+﻿namespace FuelCalcLib.Models
 {
     public class TripModel
     {
